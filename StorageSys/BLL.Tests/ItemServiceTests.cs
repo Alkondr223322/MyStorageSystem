@@ -58,7 +58,7 @@ namespace BLL.Tests
             // Assert
             Assert.True(
                 actualItemDto.ItemID == 1
-                && actualItemDto.OwnerID == 0
+                && actualItemDto.OwnerID == 1
                 && actualItemDto.SpaceTaken == 23.5f
                 );
         }
@@ -66,7 +66,7 @@ namespace BLL.Tests
         IItemService GetItemService()
         {
             var mockContext = new Mock<IUnitOfWork>();
-            var expectedItem = new Item() { ItemID = 1, OwnerID = 0, SpaceTaken = 23.5f, StorageID = 2};
+            var expectedItem = new Item() { ItemID = 1, OwnerID = 1, SpaceTaken = 23.5f, StorageID = 2};
             var mockDbSet = new Mock<IItemRepository>();
             mockDbSet.Setup(z => 
                 z.Find(

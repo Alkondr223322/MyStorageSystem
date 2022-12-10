@@ -14,9 +14,9 @@ namespace BLL.DTO
         public int OwnerID { get; set; }
         public int StoringFeeID { get; set; }
         public float BalanceValue { get; set; }
-        public StoringFeeDTO StoringFee { get; set; }
-        public IEnumerable<PaymentDTO> Payments { get; set; }
-        public StorageDTO Storage { get; set; }
-        public UserDTO Owner { get; set; }
+        //public StoringFeeDTO StoringFee { get; set; }
+        //public IEnumerable<PaymentDTO> Payments { get; set; }
+        //public StorageDTO Storage { get; set; }
+        //public UserDTO Owner { get; set; }
     }
 }

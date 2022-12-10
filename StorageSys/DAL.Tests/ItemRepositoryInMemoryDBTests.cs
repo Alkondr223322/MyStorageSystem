@@ -3,10 +3,9 @@ using Xunit;
 using DAL.Repositories.Impl;
 using DAL.EF;
 using Microsoft.EntityFrameworkCore;
-using Catalog.DAL.Entities;
+using DAL.Entities;
 using DAL.Repositories.Interfaces;
 using System.Linq;
-using DAL.Entities;
 using System.Collections.Generic;
 using Remotion.Linq;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CCL.Security.Identity
 {
-    public abstract class User
+    public class User
     {
         public User(int UID1, string Email1, string UserType1, int StorageID1 = -1)
         {
