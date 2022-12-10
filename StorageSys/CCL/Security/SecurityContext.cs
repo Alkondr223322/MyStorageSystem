@@ -1,9 +1,9 @@
-﻿using OSBB.Security.Identity;
+﻿using CCL.Security.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSBB.Security
+namespace CCL.Security
 {
     public static class SecurityContext
     {
@@ -12,9 +12,13 @@ namespace OSBB.Security
         public static User GetUser()
         {
             return _user;
-        }        public static void SetUser(User user)
+        }
+
+        public static void SetUser(User user)
         {
             _user = user;
-        }
+        }
+
+
     }
 }

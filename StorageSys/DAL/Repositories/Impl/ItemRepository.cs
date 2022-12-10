@@ -1,4 +1,4 @@
-﻿using Catalog.DAL.Entities;
+﻿using DAL.Entities;
 using DAL.EF;
 using DAL.Repositories.Impl;
 using DAL.Repositories.Interfaces;

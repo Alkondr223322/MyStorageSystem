@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel.DataAnnotations;
 
-namespace DAL.Entities
+namespace BLL.DTO
 {
-    public class Application
+    public class ApplicationDTO
     {
-        [Key]
         public int AppID { get; set; }
         public String AppStatus { get; set; }
         public float SpaceTaken { get; set; }
         public int OwnerID { get; set; }
-        public User Owner { get; set; }
-
+        public UserDTO Owner { get; set; }
     }
 }

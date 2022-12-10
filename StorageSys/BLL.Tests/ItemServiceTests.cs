@@ -1,21 +1,22 @@
-using Catalog.BLL.Services.Impl;
-using Catalog.BLL.Services.Interfaces;
-using Catalog.DAL.EF;
-using Catalog.DAL.Entities;
-using Catalog.DAL.Repositories.Interfaces;
-using Catalog.DAL.UnitOfWork;
+using BLL.Services.Impl;
+using BLL.Services.Interfaces;
+using DAL.EF;
+using DAL.Entities;
+using DAL.Repositories.Interfaces;
+using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using OSBB.Security;
-using OSBB.Security.Identity;
+using CCL.Security;
+using CCL.Security.Identity;
 using System;
 using System.Collections.Generic;
 using Xunit;
 using System.Linq;
+using User = CCL.Security.Identity.User;
 
 namespace BLL.Tests
 {
-    public class StreetServiceTests
+    public class ItemServiceTests
     {
 
         [Fact]
@@ -26,7 +27,7 @@ namespace BLL.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new StreetService(nullUnitOfWork));
+            Assert.Throws<ArgumentNullException>(() => new ItemService(nullUnitOfWork));
         }
 
         [Fact]
@@ -36,53 +37,53 @@ namespace BLL.Tests
             User user = new Admin(1, "test", 1);
             SecurityContext.SetUser(user);
             var mockUnitOfWork = new Mock<IUnitOfWork>();
-            IStreetService streetService = new StreetService(mockUnitOfWork.Object);
+            IItemService itemService = new ItemService(mockUnitOfWork.Object);
 
             // Act
             // Assert
-            Assert.Throws<MethodAccessException>(() => streetService.GetStreets(0));
+            Assert.Throws<MethodAccessException>(() => itemService.GetItems(0));
         }
 
         [Fact]
-        public void GetStreets_StreetFromDAL_CorrectMappingToStreetDTO()
+        public void GetItems_ItemFromDAL_CorrectMappingToItemDTO()
         {
             // Arrange
             User user = new Director(1, "test", 1);
             SecurityContext.SetUser(user);
-            var streetService = GetStreetService();
+            var itemService = GetItemService();
 
             // Act
-            var actualStreetDto = streetService.GetStreets(0).First();
+            var actualItemDto = itemService.GetItems(0).First();
 
             // Assert
             Assert.True(
-                actualStreetDto.StreetId == 1
-                && actualStreetDto.Name == "testN"
-                && actualStreetDto.Description == "testD"
+                actualItemDto.ItemID == 1
+                && actualItemDto.OwnerID == 0
+                && actualItemDto.SpaceTaken == 23.5f
                 );
         }
 
-        IStreetService GetStreetService()
+        IItemService GetItemService()
         {
             var mockContext = new Mock<IUnitOfWork>();
-            var expectedStreet = new Item() { StreetId = 1, Name = "testN", Description = "testD", OSBBID = 2};
-            var mockDbSet = new Mock<IStreetRepository>();
+            var expectedItem = new Item() { ItemID = 1, OwnerID = 0, SpaceTaken = 23.5f, StorageID = 2};
+            var mockDbSet = new Mock<IItemRepository>();
             mockDbSet.Setup(z => 
                 z.Find(
                     It.IsAny<Func<Item,bool>>(), 
                     It.IsAny<int>(), 
                     It.IsAny<int>()))
                   .Returns(
-                    new List<Item>() { expectedStreet }
+                    new List<Item>() { expectedItem }
                     );
             mockContext
                 .Setup(context =>
-                    context.Streets)
+                    context.Items)
                 .Returns(mockDbSet.Object);
 
-            IStreetService streetService = new StreetService(mockContext.Object);
+            IItemService itemService = new ItemService(mockContext.Object);
 
-            return streetService;
+            return itemService;
         }
     }
 }

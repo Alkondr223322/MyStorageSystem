@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSBB.Security.Identity
+namespace CCL.Security.Identity
 {
     public abstract class User
     {
-        public User(int userId, string name, int osbbId, string userType)
+        public User(int UID1, string Email1, string UserType1, int StorageID1 = -1)
         {
-            UserId = userId;
-            Name = name;
-            OSBBID = osbbId;
-            UserType = userType;
+            UID = UID1;
+            StorageID = StorageID1;
+            Email = Email1;
+            UserType = UserType1;
         }
-        public int UserId { get; }
-        public string Name { get; }
-        public int OSBBID { get; }
+        public int UID { get; }
+        public string Email { get; }
+        public int StorageID { get; }
         protected string UserType { get; }
     }
 }

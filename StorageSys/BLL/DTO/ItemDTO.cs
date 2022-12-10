@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DAL.Entities
+namespace BLL.DTO
 {
-    public class Item
+    public class ItemDTO
     {
-        [Key]
         public int ItemID { get; set; }
         public int StorageID { get; set; }
         public float SpaceTaken { get; set; }
@@ -16,9 +14,9 @@ namespace DAL.Entities
         public int OwnerID { get; set; }
         public int StoringFeeID { get; set; }
         public float BalanceValue { get; set; }
-        public StoringFee StoringFee { get; set; }
-        public List<Payment> Payments { get; set; }
-        public Storage Storage { get; set; }
-        public User Owner { get; set; }
+        public StoringFeeDTO StoringFee { get; set; }
+        public IEnumerable<PaymentDTO> Payments { get; set; }
+        public StorageDTO Storage { get; set; }
+        public UserDTO Owner { get; set; }
     }
 }

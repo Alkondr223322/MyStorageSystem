@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSBB.Security.Identity
+namespace CCL.Security.Identity
 {
     public class Director
         : User
     {
-        public Director(int userId, string name, int osbbId) 
-            : base(userId, name, osbbId, nameof(Director))
+        public Director(int UID1, string Email1, int StorageID1) 
+            : base(UID1, Email1, nameof(Director), StorageID1)
         {
         }
     }

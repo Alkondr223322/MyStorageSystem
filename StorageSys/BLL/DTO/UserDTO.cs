@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DAL.Entities
+namespace BLL.DTO
 {
-    public class User
+    public class UserDTO
     {
-        [Key]
         public int UID { get; set; }
         public int StorageID { get; set; }
         public String Email { get; set; }
         public String UserType { get; set; }
 
-        public List<Item> Items { get; set; }
-        public List<Application> Applications { get; set; }
+        public IEnumerable<ItemDTO> Items { get; set; }
+        public IEnumerable<ApplicationDTO> Applications { get; set; }
 
-        public Storage Storage { get; set; }
+        public StorageDTO Storage { get; set; }
     }
 }
