@@ -59,8 +59,8 @@ namespace BLL.Services.Impl
         {
             var user = SecurityContext.GetUser();
             var userType = user.GetType();
-            if (userType != typeof(Director)
-                || userType != typeof(Accountant))
+            if (userType != typeof(Logistician)
+                || userType != typeof(Director))
             {
                 throw new MethodAccessException();
             }
